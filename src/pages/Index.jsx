@@ -1,18 +1,19 @@
-
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
-import Logo from "@/components/Logo";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import Logo from '@/components/Logo';
 
 const Index = () => {
   const navigate = useNavigate();
   useEffect(() => {
-    localStorage.removeItem("authToken")
-  }, [])
+    localStorage.removeItem('authToken');
+  }, []);
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <header className="w-full bg-gray-100 p-4 flex items-center justify-between shadow-sm">
-        <div className="text-xl font-bold text-gray-800"><Logo /></div>
+        <div className="text-xl font-bold text-gray-800">
+          <Logo />
+        </div>
       </header>
 
       <div className="flex-1 flex flex-col items-center justify-center p-6">
@@ -30,7 +31,9 @@ const Index = () => {
           <div className="bg-white rounded-lg shadow-md p-6 mb-6">
             <div className="space-y-5">
               <div>
-                <h2 className="text-lg font-medium text-gray-800">Affordable, eco-friendly commutes</h2>
+                <h2 className="text-lg font-medium text-gray-800">
+                  Affordable, eco-friendly commutes
+                </h2>
                 <p className="text-gray-600 mt-1">Experience our fully electric vehicle fleet</p>
               </div>
 
@@ -40,7 +43,7 @@ const Index = () => {
               </div>
 
               <button
-                onClick={() => navigate("/delete/delete-account")}
+                onClick={() => navigate('/delete/deleteaccount')}
                 className="w-full py-3 px-4 mt-8 text-red-600 border border-red-600 rounded hover:bg-red-50 transition-all duration-300 font-medium"
               >
                 Delete Account

@@ -30,6 +30,7 @@ export const useNetwork = () => {
 
   const get = useCallback(
     async (url, configHeader) => {
+      console.log('ConfigHeader -->', configHeader);
       setLoading(true);
       try {
         const response = await fetch(API_HOST + url, configHeader ?? config);
@@ -69,10 +70,12 @@ export const useNetwork = () => {
         setStatus(response?.ok);
         const apiData = await response.json();
 
+        console.log('POST Response --> ', apiData);
         setIsLoaded(true);
         setData(apiData);
         return apiData;
       } catch (err) {
+        console.log('Error --> ', err);
         setError(err);
         return null;
       } finally {
