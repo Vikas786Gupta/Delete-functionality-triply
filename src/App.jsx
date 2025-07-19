@@ -7,36 +7,36 @@ import Services from './pages/Services';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import DeleteAccount from './pages/DeleteAccount';
-import MobileVerification from'./pages/MobileVerification'
-import OtpVerification from './pages/OtpVerification'
-import ConfirmDeletion from './pages/ConfirmDeletion'
-import NotFound from "./pages/NotFound"
-
+import MobileVerification from './pages/MobileVerification';
+import OtpVerification from './pages/OtpVerification';
+import ConfirmDeletion from './pages/ConfirmDeletion';
+import DeletionSuccess from './pages/DeletionSuccess';
+import Index from './pages/Index';
+import NotFound from './pages/NotFound';
+import { RecoilRoot } from 'recoil';
 
 function App() {
   return (
-    <Router>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="services" element={<Services />} />
-          <Route path="contact" element={<Contact />} />
-
-
-
-          <Route path="delete" element={<Index/>}/>
-          <Route path="delete/deleteaccount" element={<DeleteAccount />}/>
+    <RecoilRoot>
+      <Router>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="services" element={<Services />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="delete" element={<Index />} />
+            <Route path="delete/deleteaccount" element={<DeleteAccount />} />
             <Route path="delete/mobile" element={<MobileVerification />} />
-            <Route path=" delete/otp" element={<OtpVerification />} />
-            <Route path=" delete/confirm" element={<ConfirmDeletion />} />
-
-          <Route path ="*" element ={<NotFound/>}/>
-         
-        </Route>
-      </Routes>
-    </Router>
+            <Route path="delete/otp" element={<OtpVerification />} />
+            <Route path="delete/confirm" element={<ConfirmDeletion />} />
+            <Route path="delete/success" element={<DeletionSuccess />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Router>
+    </RecoilRoot>
   );
 }
 

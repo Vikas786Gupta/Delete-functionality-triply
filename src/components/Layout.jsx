@@ -7,7 +7,6 @@ import DevToolbar from './DevToolbar';
 const Layout = () => {
   return (
     <div className="flex flex-col min-h-screen">
-      vikas gupta sde1
       <ResizableNavbar />
       <main className="flex-grow">
         <Outlet />

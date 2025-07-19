@@ -1,10 +1,10 @@
-import { API_ENDPOINTS } from "../../constant";
-import { authToken, formState, mobileNumbState, otpVerifyState } from "./state";
-import { useCallback } from "react";
-import { useSetRecoilState } from "recoil";
-import { useNavigate } from "react-router-dom";
-import { useNetwork } from "../../network";
-import { saveAuthToken } from "../../utils";
+import { API_ENDPOINTS } from '../../constant';
+import { authToken, formState, mobileNumbState, otpVerifyState } from './state';
+import { useCallback } from 'react';
+import { useSetRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+import { useNetwork } from '../../network';
+import { saveAuthToken } from '../../utils';
 
 export const useAuth = () => {
   const { post } = useNetwork();
@@ -29,6 +29,8 @@ export const useAuth = () => {
         isMobile: isMobile,
       })
         .then((res) => {
+          console.log('Payload ', countrycode, phoneNumber, isMobile);
+          console.log('Send OTP Response --> ', res);
           if (res.success) {
             setMobileNumbState((prev) => {
               return {
@@ -41,7 +43,7 @@ export const useAuth = () => {
                 isLoading: false,
               };
             });
-            navigate("/delete/otp-verification");
+            navigate('/delete/otp-verification');
           } else {
             setMobileNumbState((prev) => {
               return {
@@ -56,6 +58,7 @@ export const useAuth = () => {
           }
         })
         .catch((err) => {
+          console.log('Error2 --> ', err);
           setMobileNumbState((prev) => {
             return {
               ...prev,
@@ -80,24 +83,19 @@ export const useAuth = () => {
   );
 
   const verifyOtp = useCallback(
-    (
-      countrycode,
-      isMobile,
-      phoneNumber,
-      Otp
-    ) => {
+    (countrycode, isMobile, phoneNumber, Otp) => {
       setOtpVerifyState((prev) => {
         return {
           ...prev,
           isLoading: true,
         };
       });
-      console.log("payload ==>", {
+      console.log('payload ==>', {
         countrycode: countrycode,
         phoneNumber: phoneNumber,
         isMobile: isMobile,
         Otp: Otp,
-      })
+      });
       post(API_ENDPOINTS.VERIFY_OTP, {
         CountryCode: countrycode,
         phoneNumber: phoneNumber,
@@ -105,7 +103,7 @@ export const useAuth = () => {
         Otp: Otp,
       })
         .then((res) => {
-          console.log("res ===err>>>", res)
+          console.log('res ===err>>>', res);
           if (res.success) {
             setOtpVerifyState((prev) => {
               return {
@@ -116,9 +114,9 @@ export const useAuth = () => {
                 isLoading: false,
               };
             });
-            setAuthToken(res.authToken)
+            setAuthToken(res.authToken);
             saveAuthToken(res.authToken);
-            navigate("/delete/confirm-deletion");
+            navigate('/delete/confirm-deletion');
           } else {
             setOtpVerifyState((prev) => {
               return {
@@ -141,7 +139,7 @@ export const useAuth = () => {
                 ...prev.data,
               },
               error: true,
-              errorMsg: "Something went wrong !",
+              errorMsg: 'Something went wrong !',
               isLoading: false,
             };
           });
@@ -168,7 +166,7 @@ export const useAuth = () => {
       });
       post(API_ENDPOINTS.DELETE_USER, formData)
         .then((res) => {
-          console.log("Response 3 -> ", res);
+          console.log('Response 3 -> ', res);
           if (res.success) {
             setformState((prev) => {
               return {
@@ -181,7 +179,7 @@ export const useAuth = () => {
             });
             // Simulate account deletion process
             setTimeout(() => {
-              navigate("/delete/deletion-success");
+              navigate('/delete/deletion-success');
             }, 2000);
           } else {
             setformState((prev) => {
@@ -205,7 +203,7 @@ export const useAuth = () => {
                 ...prev.data,
               },
               error: true,
-              errorMsg: "Something went wrong !",
+              errorMsg: 'Something went wrong !',
               isLoading: false,
             };
           });

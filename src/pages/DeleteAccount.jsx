@@ -1,10 +1,9 @@
-
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import PageTransition from "../components/PageTransition";
-import { motion } from "framer-motion";
-import Logo from "@/components/Logo";
-import { Outlet } from "react-router-dom";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import PageTransition from '../components/PageTransition';
+import { motion } from 'framer-motion';
+import Logo from '@/components/Logo';
+import { Outlet } from 'react-router-dom';
 
 const DeleteAccount = () => {
   const navigate = useNavigate();
@@ -13,7 +12,9 @@ const DeleteAccount = () => {
     <PageTransition>
       <div className="min-h-screen bg-white flex flex-col">
         <header className="w-full bg-gray-100 p-4 flex items-center justify-between shadow-sm">
-          <div className="text-xl font-bold text-gray-800"><Logo /></div>
+          <div className="text-xl font-bold text-gray-800">
+            <Logo />
+          </div>
         </header>
 
         <div className="max-w-md w-full mx-auto px-4 pt-8 pb-16">
@@ -56,14 +57,14 @@ const DeleteAccount = () => {
 
             <div className="space-y-3 pt-2">
               <button
-                onClick={() => navigate("/delete/mobile-verification")}
+                onClick={() => navigate('/delete/mobile')}
                 className="w-full py-3 px-4 bg-red-600 hover:bg-red-700 text-white rounded transition-all duration-300 font-medium"
               >
                 Continue to Delete
               </button>
 
               <button
-                onClick={() => navigate("/delete")}
+                onClick={() => navigate('/delete')}
                 className="w-full py-3 px-4 bg-white text-gray-700 border border-gray-300 rounded hover:bg-gray-50 transition-all duration-300 font-medium"
               >
                 Cancel

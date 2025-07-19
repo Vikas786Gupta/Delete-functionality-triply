@@ -1,20 +1,19 @@
-
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import PageTransition from "../components/PageTransition";
-import { motion } from "framer-motion";
-import { ChevronLeft } from "lucide-react";
-import Logo from "@/components/Logo";
-import { useAuth } from "./Store";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import PageTransition from '../components/PageTransition';
+import { motion } from 'framer-motion';
+import { ChevronLeft } from 'lucide-react';
+import Logo from '@/components/Logo';
+import { useAuth } from './Store';
 
 const MobileVerification = () => {
   const navigate = useNavigate();
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [isValid, setIsValid] = useState(false);
-  const [countryCode, setCountryCode] = useState("+91");
+  const [countryCode, setCountryCode] = useState('+91');
   const { sendOtp } = useAuth();
   const handlePhoneChange = (e) => {
-    const value = e.target.value.replace(/\D/g, "");
+    const value = e.target.value.replace(/\D/g, '');
     setPhoneNumber(value);
     setIsValid(value.length >= 10);
   };
@@ -22,7 +21,8 @@ const MobileVerification = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isValid) {
-      sendOtp(true, phoneNumber, countryCode.replace("+", ""));
+      console.log('Button Clicked!');
+      sendOtp(true, phoneNumber, countryCode.replace('+', ''));
     }
   };
 
@@ -30,13 +30,12 @@ const MobileVerification = () => {
     <PageTransition>
       <div className="min-h-screen bg-white flex flex-col">
         <header className="w-full bg-gray-100 p-4 flex items-center shadow-sm">
-          <button
-            onClick={() => navigate("/delete/delete-account")}
-            className="text-gray-600 mr-4"
-          >
+          <button onClick={() => navigate('/delete/delete-account')} className="text-gray-600 mr-4">
             <ChevronLeft size={24} />
           </button>
-          <div className="text-xl font-bold text-gray-800"><Logo /></div>
+          <div className="text-xl font-bold text-gray-800">
+            <Logo />
+          </div>
         </header>
 
         <div className="max-w-md w-full mx-auto px-4 pt-8 pb-16">
@@ -46,12 +45,8 @@ const MobileVerification = () => {
             transition={{ duration: 0.4 }}
             className="mb-8"
           >
-            <h1 className="text-2xl font-bold text-gray-800 mb-2">
-              Enter mobile number
-            </h1>
-            <p className="text-gray-600">
-              We'll send you a verification code to confirm it's you
-            </p>
+            <h1 className="text-2xl font-bold text-gray-800 mb-2">Enter mobile number</h1>
+            <p className="text-gray-600">We'll send you a verification code to confirm it's you</p>
           </motion.div>
 
           <motion.div
